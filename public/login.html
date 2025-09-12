@@ -139,6 +139,8 @@ h1{
       const data = await res.json();
       if (res.ok) {
         alert("Login successful!");
+        localStorage.setItem("username",data.name);
+        localStorage.setItem("userEmail",data.email);
         window.location.href = "dashboard.html"; // redirect to dashboard
       } else {
         alert(data.message);

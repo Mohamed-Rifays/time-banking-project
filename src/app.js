@@ -26,6 +26,13 @@ app.get("",(req,res)=>{
 app.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    const db = client.db("time-banking");
+    const users = db.collection("users");
+
+     const user = await users.findOne({ email });
+
+     if(user){
+ return res.status(400).json({ message: "Email is already registered" });     }
 
    await saveuser(name,email,password)
 
@@ -50,7 +57,7 @@ app.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Email or password incorrect" });
     }
 
-    res.json({ message: "Login successful!" });
+    res.json({ message: "Login successful!", name: user.name, email: user.email });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

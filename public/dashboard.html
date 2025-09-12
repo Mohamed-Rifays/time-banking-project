@@ -117,17 +117,27 @@
             <a href="#">Community</a>
             <a href="#">Messages</a>
           </div>
-          <button className="logout-btn">Logout</button>
+          <a href="login.html"><button className="logout-btn">Logout</button></a>
         </div>
       );
     }
 
     function Dashboard() {
+  
+        const [username,setusername] = React.useState("");
+
+        React.useEffect(()=>{
+            const name = localStorage.getItem("username");
+            if (name) {
+                setusername(name);
+            }
+        },[])
+
       return (
         <>
           <Navbar />
           <div className="welcome">
-            <h1>Welcome, Alex!</h1>
+            <h1>Welcome, {username || "Guest"}!</h1>
             <p>You now have <b>0 hours</b>. Start exchanging skills today.</p>
           </div>
 
