@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { saveUser, connectDB } from "./mongodb.js";
+import { saveuser, connectDB } from "./mongodb.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -30,7 +30,7 @@ app.post("/signup", async (req, res) => {
       return res.status(400).json({ message: "Email is already registered" });
     }
 
-    await saveUser(name, email, password);
+    await saveuser(name, email, password);
     res.json({ message: "User registered successfully!" });
   } catch (err) {
     console.error(err);
