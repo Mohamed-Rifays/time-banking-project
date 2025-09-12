@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeBank</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            background: #fff;
+        }
+        .header-second-part {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+           
+            
+        }
+        .header-second-part a{
+            cursor: pointer;
+        }
+        
+        .project-logo {
+            width: 50px;
+            margin-right: 10px;
+        }
+        .header-first-part {
+            display: flex;
+            align-items: center;
+        }
+        .sign-up-button {
+            font-family: Arial, Helvetica, sans-serif;
+            border: none;
+            background-color: rgb(0, 139, 252);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .main-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 50px; 
+            margin-top: 60px;
+            padding: 0 40px;
+        }
+        .intro {
+            text-align: left;
+            max-width: 500px;
+        }
+        .intro h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .intro p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .intro button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: rgb(0, 139, 252);
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .community-image{
+            width: 500px;
+            
+        }
+         @media(max-width: 900px) {
+      .main-section {
+        flex-direction: column;
+      }
+
+      .left-section img {
+        max-width: 100%;
+      }
+    }
+    </style>
+</head>
+<body>
+    <!-- root container -->
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Header(){
+            return(
+                <div className="header">
+                    <div className="header-first-part">
+                        <img className="project-logo" src="img/project-logo.webp" alt="project-logo"/>
+                        <span>Time Banking</span>
+                    </div>
+
+                    <div className="header-second-part">
+                        <a>Home</a>
+                        <a>About</a>
+                        <a>Contact</a>  
+                    </div>
+
+                    <div className="header-third-part">
+                       <a href="sign-up.html"> <button className="sign-up-button">Sign Up</button> </a> 
+                    </div>
+                </div>
+            )
+        }
+
+        function Intro(){
+            return (
+                <div className="intro">
+                    <h1>
+                        A Community <br /> Time-Banking <br /> Platform
+                    </h1>
+                    <p>
+                        Exchange skills and services with your <br />
+                        community.  
+                        Earn time credits, spend <br />
+                        them on what you need.
+                    </p>
+                    <button>Get started</button>
+
+                    
+                </div>
+
+                
+            )
+        }
+
+        function Communityimage(){
+            return (
+                <div className="community-image-container">
+                       <img className="community-image" src="img/community-image.png" alt="community-image"/>    
+                </div>
+            )
+        }
+
+        function MainSection(){
+            return (
+                <div className="main-section">
+                    <Intro/>
+                    <Communityimage/>
+                </div>
+            )
+        }
+
+        function App(){
+            return (
+                <>
+                    <Header/>
+                    <MainSection/>
+                </>
+            )
+        }
+
+        const container = document.getElementById('root');
+        ReactDOM.createRoot(container).render(<App/>);
+    </script>
+</body>
+</html>
