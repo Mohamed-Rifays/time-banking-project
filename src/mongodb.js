@@ -10,7 +10,7 @@ let database;
 export async function connectDB() {
   if (!database) {
     await client.connect();
-    db = client.db(databaseName);
+    database = client.db(databaseName);
     console.log(" MongoDB connected");
   }
   return database;
