@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | TimeBank</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #f9fafc;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-first-part {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: rgb(0, 139, 252);
+    }
+    .project-logo {
+      width: 50px;
+      margin-right: 12px;
+    }
+    .header-second-part {
+      display: flex;
+      gap: 40px;
+    }
+    .header-second-part a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .header-second-part a:hover {
+      color: rgb(0, 139, 252);
+    }
+    .sign-up-button {
+      border: none;
+      background-color: rgb(0, 139, 252);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .sign-up-button:hover {
+      background-color: rgb(0, 110, 220);
+      transform: scale(1.05);
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 50px;
+      padding: 80px 60px;
+      flex-wrap: wrap;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    .contact-info h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .contact-info p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    .contact-info a {
+      color: rgb(0, 139, 252);
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 320px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .contact-form h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgb(0, 139, 252);
+    }
+    .contact-form button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      border: none;
+      background-color: rgb(0, 139, 252);
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .contact-form button:hover {
+      background-color: rgb(0, 110, 220);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 50px;
+      background-color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 16px;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+    .footer a {
+      margin: 0 10px;
+      color: rgb(0, 139, 252);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer a:hover {
+      color: rgb(0, 110, 220);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      .contact-section {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-first-part">
+      <img class="project-logo" src="img/project-logo.webp" alt="project-logo"/>
+      <span>Time Banking</span>
+    </div>
+    <div class="header-second-part">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" style="color:rgb(0,139,252); font-weight:bold;">Contact</a>  
+    </div>
+    <div>
+      <a href="sign-up.html"><button class="sign-up-button">Sign Up</button></a>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <div class="contact-section">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p>We’d love to hear from you! Whether you have questions about the platform, need help, or just want to say hello — feel free to reach out.</p>
+      <p><strong>📍 Address:</strong> 123 Community Street, Cityville, Country</p>
+      <p><strong>📞 Phone:</strong> +1 (555) 123-4567</p>
+      <p><strong>✉ Email:</strong> <a href="mailto:support@timebank.com">support@timebank.com</a></p>
+      <p>
+        <strong>🌐 Follow us:</strong> 
+        <a href="#">Facebook</a> | 
+        <a href="#">Twitter</a> | 
+        <a href="#">LinkedIn</a>
+      </p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Subject" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2025 TimeBank. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms of Service</a>
+    </p>
+  </div>
+</body>
+</html>

@@ -118,33 +118,76 @@ h1{
     }
 
           function Login(){
-             return (
-            <div className="login-page">
-                <h1>Log In</h1>
-                <span>Get Started</span>
-                <input className="input-box" type="email" placeholder="Email" required/>
-                <input className="input-box" type="password" placeholder="Password" required/>
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: ""
+  });
 
-                <button className="login-button">Log In</button>
-            </div>
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-             )
-          }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-          function App(){
-            return (
-                <div>
-                   <Header/>
-                   <div className="main">
-                    <Login/>
-                    </div>
-                   
-                </div>
-            )
-          }
-          const container = document.querySelector('#root');
+      const data = await res.json();
+      if (res.ok) {
+        alert("Login successful!");
+        window.location.href = "dashboard.html"; // redirect to dashboard
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong!");
+    }
+  };
 
-          ReactDOM.createRoot(container).render(<App/>)
+  return (
+    <form className="login-page" onSubmit={handleSubmit}>
+      <h1>Log In</h1>
+      <span>Get Started</span>
+      <input
+        className="input-box"
+        type="email"
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+        required
+      />
+      <input
+        className="input-box"
+        type="password"
+        name="password"
+        placeholder="Password"
+        onChange={handleChange}
+        required
+      />
+      <button className="login-button" type="submit">Log In</button>
+    </form>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <div className="main">
+        <Login />
+      </div>
+    </div>
+  );
+}
+
+const container = document.querySelector('#root')
+ReactDOM.createRoot(container).render(<App/>) 
+
     </script>
 </body>
 </html>

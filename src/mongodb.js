@@ -1,3 +1,29 @@
 import { MongoClient } from "mongodb";
 
-const connection
+const connectionURL = "mongodb://127.0.0.1:27017/time-banking";
+const databaseName = 'time-banking';
+
+export const client = new MongoClient(connectionURL);
+
+export async function saveuser(name,email,password) {
+    try{
+        await client.connect();
+        const db = client.db(databaseName);
+        const users = db.collection("users");
+
+        const result = await users.insertOne({
+            name : name,
+            email : email,
+            password : password
+        })
+
+        console.log("Inserted Id",result.insertedId);
+        
+    }catch(error){
+        console.log(error);
+        console.log("error inserting user info");
+        
+        
+    }
+    
+}

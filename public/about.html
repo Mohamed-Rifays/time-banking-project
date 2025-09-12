@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TimeBank</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #f9fafc;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-first-part {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: rgb(0, 139, 252);
+    }
+    .project-logo {
+      width: 50px;
+      margin-right: 12px;
+    }
+    .header-second-part {
+      display: flex;
+      gap: 40px;
+    }
+    .header-second-part a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .header-second-part a:hover {
+      color: rgb(0, 139, 252);
+    }
+    .sign-up-button {
+      border: none;
+      background-color: rgb(0, 139, 252);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .sign-up-button:hover {
+      background-color: rgb(0, 110, 220);
+      transform: scale(1.05);
+    }
+
+  
+    .hero {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(to right, #e6f3ff, #f9fafc);
+    }
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .hero p {
+      font-size: 20px;
+      color: #555;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+ 
+    .mission-section {
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .mission-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .mission-section p {
+      font-size: 18px;
+      max-width: 900px;
+      margin: auto;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    
+    .team-section {
+      background: #fff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .team-section h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #222;
+    }
+    .team-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .team-member {
+      background: #fdfdfd;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid rgb(0, 139, 252);
+    }
+    .team-member h3 {
+      margin: 10px 0 5px;
+      font-size: 20px;
+      color: #222;
+    }
+    .team-member p {
+      font-size: 16px;
+      color: #555;
+    }
+
+
+    .footer {
+      margin-top: 50px;
+      background-color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 16px;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+    .footer a {
+      margin: 0 10px;
+      color: rgb(0, 139, 252);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer a:hover {
+      color: rgb(0, 110, 220);
+    }
+
+    
+    @media(max-width: 900px) {
+      .team-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-first-part">
+      <img class="project-logo" src="img/project-logo.webp" alt="project-logo"/>
+      <span>Time Banking</span>
+    </div>
+    <div class="header-second-part">
+      <a href="index.html">Home</a>
+      <a href="about.html" style="color:rgb(0,139,252); font-weight:bold;">About</a>
+      <a href="contact.html">Contact</a>  
+    </div>
+    <div>
+      <a href="sign-up.html"><button class="sign-up-button">Sign Up</button></a>
+    </div>
+  </div>
+
+  
+  <div class="hero">
+    <h1>About TimeBank</h1>
+    <p>
+      TimeBank is a community-driven platform where people exchange skills and services 
+      through time credits instead of money. Our mission is to create stronger, 
+      more connected communities where everyone’s time is valued equally.
+    </p>
+  </div>
+
+  
+  <div class="mission-section">
+    <h2>Our Mission & Vision</h2>
+    <p>
+      We believe in the power of community. By exchanging skills — whether tutoring, 
+      gardening, coding, or caregiving — members contribute to a network of shared 
+      resources. <br><br>
+      Our vision is to build a society where time is the true currency, 
+      ensuring inclusivity, fairness, and empowerment for all.
+    </p>
+  </div>
+
+ 
+  <div class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Farhan Rifay">
+        <h3>Farhan</h3>
+        <p>Junior Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Rifays">
+        <h3>Rifays</h3>
+        <p>Senior Developer</p>
+        </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Hafeez">
+        <h3>Hafeez</h3>
+        <p>Technical Support</p>
+      </div>
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Manoj">
+        <h3>Manoj</h3>
+        <p>Technical Support</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="footer">
+    <p>© 2025 TimeBank. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms of Service</a>
+    </p>
+  </div>
+</body>
+</html>

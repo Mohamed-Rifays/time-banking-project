@@ -167,28 +167,62 @@
     }
 
     function Signup(){
-      return (
-        <div className="container">
-          <div className="left-section">
-            <img src="img/signup-page-image.png" alt="Community"/>
-          </div>
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
 
-          <div className="sign-up-content">
-            <h1>Sign Up</h1>
-            <span>Join the community, start <br/>exchanging skills today.</span>
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
 
-            <input className="input-box" type="text" placeholder="Full Name"/>
-            <input className="input-box" type="email" placeholder="Email"/>
-            <input className="input-box" type="password" placeholder="Password"/>
-            <input className="input-box" type="password" placeholder="Confirm Password"/>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            <button className="sign-up-button">Sign Up</button>
-
-            <span className="login-text">Already have an account? <a href="login.html">Log in</a></span>
-          </div>
-        </div>
-      )
+    if(formData.password !== formData.confirmPassword){
+      alert("Passwords do not match!");
+      return;
     }
+
+    try {
+      const res = await fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      alert(data.message);  // success or error message
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong!");
+    }
+  };
+
+  return (
+    <div className="container">
+      <div className="left-section">
+        <img src="img/signup-page-image.png" alt="Community"/>
+      </div>
+
+      <form className="sign-up-content" onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
+        <span>Join the community, start <br/>exchanging skills today.</span>
+
+        <input className="input-box" name="name" type="text" placeholder="Full Name" onChange={handleChange} required/>
+        <input className="input-box" name="email" type="email" placeholder="Email" onChange={handleChange} required/>
+        <input className="input-box" name="password" type="password" placeholder="Password" onChange={handleChange} required/>
+        <input className="input-box" name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleChange} required/>
+
+        <button type="submit" className="sign-up-button">Sign Up</button>
+
+        <span className="login-text">Already have an account? <a href="login.html">Log in</a></span>
+      </form>
+    </div>
+  )
+}
 
     function App(){
       return (
