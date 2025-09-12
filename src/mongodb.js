@@ -25,6 +25,8 @@ export async function saveuser(name,email,password) {
         console.log("error inserting user info");
         
         
+    } finally{
+        await client.close();
     }
     
 }

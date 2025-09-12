@@ -107,6 +107,6 @@ app.get("/getskills", async (req, res) => {
 });
 
 app.listen(port ,"0.0.0.0",()=>{
-    console.log(`server is up on port http://localhost:${port}`);
+    console.log(`server is up on port ${port}`);
     
 })
