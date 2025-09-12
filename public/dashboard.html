@@ -93,6 +93,15 @@
       border: 1px solid #007bff;
       color: #007bff;
     }
+    .welcome-user{
+        margin-left: 500px;
+    }
+    .menu{
+        margin-left: 100px;
+    }
+    .menu a:hover{
+        color: #007bff;
+    }
   </style>
 </head>
 <body>
@@ -104,7 +113,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
-    function Navbar() {
+    function Navbar({username}) {
       return (
         <div className="navbar">
           <div className="logo">
@@ -117,6 +126,7 @@
             <a href="#">Community</a>
             <a href="#">Messages</a>
           </div>
+          <span className="welcome-user">Welcome, {username}</span>
           <a href="login.html"><button className="logout-btn">Logout</button></a>
         </div>
       );
@@ -125,20 +135,49 @@
     function Dashboard() {
   
         const [username,setusername] = React.useState("");
+        const [balance, setBalance] = React.useState(0);
 
         React.useEffect(()=>{
             const name = localStorage.getItem("username");
             if (name) {
                 setusername(name);
             }
+
+            const storedBalance = localStorage.getItem("balance");
+            if(storedBalance){
+                setBalance(parseInt(storedBalance,10));
+            }
+            else{
+                localStorage.setItem("balance",0);
+            }
         },[])
+
+        const addHour = () => {
+            const newBalance = balance + 1;
+            setBalance(newBalance);
+            localStorage.setItem("balance",newBalance)
+        }
+
+        const subtractHour = () => {
+            if(balance > 0) {
+                const newBalance = balance -1;
+                setBalance(newBalance);
+                localStorage.setItem("balance",newBalance);
+                 window.location.href = "request-skill.html";
+
+            }
+           
+            else{
+               alert("Not enough credits!");
+            }
+        }
 
       return (
         <>
-          <Navbar />
+          <Navbar username={username} />
           <div className="welcome">
             <h1>Welcome, {username || "Guest"}!</h1>
-            <p>You now have <b>0 hours</b>. Start exchanging skills today.</p>
+            <p>You now have <b>{balance} credits</b>. Start exchanging skills today.</p>
           </div>
 
           <div className="cards">
@@ -148,7 +187,7 @@
             </div>
             <div className="card">
               <h3> My Balance</h3>
-              <p>0 hours</p>
+              <p>{balance} Credits</p>
             </div>
             <div className="card">
               <h3> My Balance</h3>
@@ -161,8 +200,8 @@
           </div>
 
           <div className="actions">
-            <button className="btn-blue">+ Offer Skill</button>
-            <button className="btn-blue">+ Request Help</button>
+           <a href="offer-skill.html"><button className="btn-blue" onClick={addHour}>+ Offer Skill</button></a>
+           <button className="btn-blue" onClick={subtractHour}>+ Request Help</button>
             <button className="btn-outline">View My Exchanges</button>
           </div>
         </>

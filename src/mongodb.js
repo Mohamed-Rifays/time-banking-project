@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 
-const connectionURL = "mongodb://127.0.0.1:27017/time-banking";
+const connectionURL =  process.env.MONGO_URI ||"mongodb://127.0.0.1:27017/time-banking";
+
 const databaseName = 'time-banking';
 
 export const client = new MongoClient(connectionURL);

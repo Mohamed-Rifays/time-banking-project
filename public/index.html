@@ -133,89 +133,140 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-        function Header(){
-            return(
-                <div className="header">
-                    <div className="header-first-part">
-                        <img className="project-logo" src="img/project-logo.webp" alt="project-logo"/>
-                        <span>Time Banking</span>
-                    </div>
+  function Header() {
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [username, setUsername] = React.useState("");
 
-                    <div className="header-second-part">
-                        <a ><span className="home-text">Home</span></a>
-                        <a href="about.html">About</a>
-                        <a href="contact.html">Contact</a>  
-                    </div>
+    React.useEffect(() => {
+      const storedName = localStorage.getItem("username");
+      if (storedName) {
+        setIsLoggedIn(true);
+        setUsername(storedName);
+      }
+    }, []);
 
-                    <div className="header-third-part">
-                       <a href="sign-up.html"> <button className="sign-up-button">Sign Up</button> </a> 
-                    </div>
-                </div>
-            )
-        }
+    const handleLogout = () => {
+      localStorage.clear();
+      setIsLoggedIn(false);
+      window.location.href = "index.html"; 
+    };
 
-        function Intro(){
-            return (
-                <div className="intro">
-                    <h1>
-                        A Community <br /> Time-Banking <br /> Platform
-                    </h1>
-                    <p>
-                        Exchange skills and services with your <br />
-                        community.  
-                        Earn time credits, spend <br />
-                        them on what you need.
-                    </p>
-                    <a href="dashboard.html"><button>Get started</button></a>
+    return (
+      <div className="header">
+        <div className="header-first-part">
+          <img className="project-logo" src="img/project-logo.webp" alt="project-logo" />
+          <span>Time Banking</span>
+        </div>
 
-                    
-                </div>
+        <div className="header-second-part">
+          <a><span className="home-text">Home</span></a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
 
-                
-            )
-        }
+        <div className="header-third-part">
+          {!isLoggedIn ? (
+            <a href="sign-up.html">
+              <button className="sign-up-button">Sign Up</button>
+            </a>
+          ) : (
+            <>
+              <span style={{ marginRight: "15px", fontWeight: "bold" }}>
+                Welcome, {username}
+              </span>
+              <button className="sign-up-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
 
-        function Communityimage(){
-            return (
-                <div className="community-image-container">
-                       <img className="community-image" src="img/community-image.png" alt="community-image"/>    
-                </div>
-            )
-        }
+  function Intro() {
+     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [username, setUsername] = React.useState("");
 
-        function MainSection(){
-            return (
-                <div className="main-section">
-                    <Intro/>
-                    <Communityimage/>
-                </div>
-            )
-        }
+    React.useEffect(() => {
+      const storedName = localStorage.getItem("username");
+      if (storedName) {
+        setIsLoggedIn(true);
+        setUsername(storedName);
+      }
+    }, []);
 
-        function Footer(){
-            return (
-                <div class="footer">
-                <p>© 2025 TimeBank. All rights reserved.</p>
-                <p>
-                <a href="#">Privacy Policy</a> | 
-                <a href="#">Terms of Service</a>
-               </p>
-             </div>
-            )
-            
-        }
-        function App(){
-            return (
-                <>
-                    <Header/>
-                    <MainSection/>
-                    <Footer/>
-                </>
-            )
-        }
+   const handleGetStarted = () => {
+    if (isLoggedIn) {
+        window.location.href = "dashboard.html";
+    }
+    else {
+        window.location.href = "sign-up.html";
+    }
+   }
 
-        const container = document.getElementById('root');
-        ReactDOM.createRoot(container).render(<App/>);
-    </script>
+    return (
+      <div className="intro">
+        <h1>
+          A Community <br /> Time-Banking <br /> Platform
+        </h1>
+        <p>
+          Exchange skills and services with your <br />
+          community. Earn time credits, spend <br />
+          them on what you need.
+        </p>
+       
+          <button onClick={handleGetStarted}>Get started</button>
+        
+      </div>
+    );
+  }
+
+  function Communityimage() {
+    return (
+      <div className="community-image-container">
+        <img
+          className="community-image"
+          src="img/community-image.png"
+          alt="community-image"
+        />
+      </div>
+    );
+  }
+
+  function MainSection() {
+    return (
+      <div className="main-section">
+        <Intro />
+        <Communityimage />
+      </div>
+    );
+  }
+
+  function Footer() {
+    return (
+      <div className="footer">
+        <p>© 2025 TimeBank. All rights reserved.</p>
+        <p>
+          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <>
+        <Header />
+        <MainSection />
+        <Footer />
+      </>
+    );
+  }
+
+  const container = document.getElementById("root");
+  ReactDOM.createRoot(container).render(<App />);
+</script>
+
 </body>
 </html>

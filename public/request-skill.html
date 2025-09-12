@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request Skill</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f9fafc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .search-box {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .skill-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .skill-card h3 {
+      margin: 0 0 8px;
+    }
+    .skill-card p {
+      margin: 4px 0;
+      color: #555;
+    }
+    .contact-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function RequestSkillPage() {
+      const [skills, setSkills] = React.useState([]);
+      const [searchQuery, setSearchQuery] = React.useState("");
+
+      React.useEffect(() => {
+        fetch("http://localhost:5000/getskills")
+          .then((res) => res.json())
+          .then((data) => setSkills(data))
+          .catch((err) => console.error("Error fetching skills:", err));
+      }, []);
+
+      const filteredSkills = skills.filter((s) =>
+        s.skillName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+      return (
+        <div className="container">
+          <h2>Request a Skill</h2>
+          <input
+            className="search-box"
+            type="text"
+            placeholder="Search skills by name..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          {filteredSkills.length > 0 ? (
+            filteredSkills.map((s, i) => (
+              <div key={i} className="skill-card">
+                <h3>{s.skillName}</h3>
+                <p>{s.description}</p>
+                <p><b>Availability:</b> {s.availability}</p>
+                <a href={`mailto:${s.email}`} className="contact-link">
+                  Contact Teacher
+                </a>
+              </div>
+            ))
+          ) : (
+            <p>No skills found.</p>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<RequestSkillPage />);
+  </script>
+</body>
+</html>

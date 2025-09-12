@@ -43,6 +43,35 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+app.post("/offerskill", async (req, res) => {
+  try {
+    const { skillName, description, availability, email } = req.body;
+
+     const db = client.db("time-banking");
+    const skills = db.collection("skills");
+
+    if (!skillName || !description || !availability || !email) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    await skills.insertOne({
+
+      skillName,
+      description,
+      availability,
+      email,
+      createdAt: new Date()
+      
+    });
+
+    res.json({ message: "Skill offered successfully!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error saving skill" });
+  }
+});
+
+
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -61,6 +90,19 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.get("/getskills", async (req, res) => {
+  try {
+    const db = client.db("time-banking");
+    const skills = db.collection("skills");
+
+    const skillList = await skills.find().toArray();
+    res.json(skillList);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error fetching skills" });
   }
 });
 
