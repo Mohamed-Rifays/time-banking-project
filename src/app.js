@@ -22,42 +22,48 @@ app.get("", (req, res) => {
 app.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const db = await connectDB();
-    const users = db.collection("users");
 
-    const user = await users.findOne({ email });
-    if (user) {
-      return res.status(400).json({ message: "Email is already registered" });
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    await saveuser(name, email, password);
-    res.json({ message: "User registered successfully!" });
+    const result = await saveuser(name, email, password);
+
+    if (!result.success) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    res.json({ message: "User registered successfully!", userId: result.userId });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error saving user" });
   }
 });
 
+
 app.post("/offerskill", async (req, res) => {
   try {
-    const { skillName, description, availability, email } = req.body;
+    const {  skillName, description, availability, email } = req.body;
 
-    if (!skillName || !description || !availability || !email) {
+    if ( !skillName || !description || !availability || !email) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const db = await connectDB();
-    const skills = db.collection("skills");
 
-    await skills.insertOne({
+    const db = await connectDB();
+    const offers = db.collection("offers");
+
+   
+    const result = await offers.insertOne({
       skillName,
       description,
       availability,
       email,
+      status: "open",          
       createdAt: new Date(),
     });
 
-    res.json({ message: "Skill offered successfully!" });
+    res.json({ message: "Skill offered successfully!", offerId: result.insertedId });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error saving skill" });

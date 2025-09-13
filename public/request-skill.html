@@ -67,6 +67,20 @@
     function RequestSkillPage() {
       const [skills, setSkills] = React.useState([]);
       const [searchQuery, setSearchQuery] = React.useState("");
+      const confirmSchedule = () => {
+          const balance = parseInt(localStorage.getItem("balance"),10) || 0;
+
+      if (balance > 0) {
+         const newBalance = balance - 1;
+    localStorage.setItem("balance", newBalance);
+    alert("Course scheduled successfully! 1 credit deducted.");
+    window.location.href = "dashboard.html"; 
+      }
+      else {
+    alert("Not enough credits to schedule a course!");
+  }
+      }
+      
 
       React.useEffect(() => {
         fetch("/getskills")
@@ -99,6 +113,7 @@
                 <a href={`mailto:${s.email}`} className="contact-link">
                   Contact Teacher
                 </a>
+                <button onClick={confirmSchedule}>Confirm schedule</button>
               </div>
             ))
           ) : (

@@ -135,7 +135,7 @@
     function Dashboard() {
   
         const [username,setusername] = React.useState("");
-        const [balance, setBalance] = React.useState(0);
+        const [balance, setBalance] = React.useState(1);
 
         React.useEffect(()=>{
             const name = localStorage.getItem("username");
@@ -148,30 +148,24 @@
                 setBalance(parseInt(storedBalance,10));
             }
             else{
-                localStorage.setItem("balance",0);
+                localStorage.setItem("balance",1);
             }
         },[])
 
-        const addHour = () => {
-            const newBalance = balance + 1;
-            setBalance(newBalance);
-            localStorage.setItem("balance",newBalance)
+        const offerSkill = () => {
+            window.location.href ="offer-skill.html"
         }
 
-        const subtractHour = () => {
-            if(balance > 0) {
-                const newBalance = balance -1;
-                setBalance(newBalance);
-                localStorage.setItem("balance",newBalance);
-                 window.location.href = "request-skill.html";
-
+        const goToRequestPage = () => {
+            if(balance >0){
+               window.location.href ="request-skill.html";
             }
-           
             else{
-               alert("Not enough credits!");
-            }
+            alert("not enough credit");
+           }
+           
         }
-
+          
       return (
         <>
           <Navbar username={username} />
@@ -200,13 +194,14 @@
           </div>
 
           <div className="actions">
-           <a href="offer-skill.html"><button className="btn-blue" onClick={addHour}>+ Offer Skill</button></a>
-           <button className="btn-blue" onClick={subtractHour}>+ Request Help</button>
+           <a href="offer-skill.html"><button className="btn-blue" onClick={offerSkill}>+ Offer Skill</button></a>
+           <button className="btn-blue" onClick={goToRequestPage}>+ Request Help</button>
             <button className="btn-outline">View My Exchanges</button>
           </div>
         </>
       );
-    }
+        }
+    
 
     const container = document.getElementById("root");
     ReactDOM.createRoot(container).render(<Dashboard />);
